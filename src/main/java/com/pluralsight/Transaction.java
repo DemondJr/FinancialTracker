@@ -1,2 +1,4 @@
-package com.pluralsight;public class Transaction {
+package com.pluralsight;
+
+public class Transaction {
 }
