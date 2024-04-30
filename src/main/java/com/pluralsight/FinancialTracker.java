@@ -135,7 +135,6 @@ public class FinancialTracker {
 
         System.out.println("Enter the vendor");
         String vendor = scanner.nextLine();
-        
         System.out.println("Enter the amount of payment");
         double payment = scanner.nextDouble();
 
