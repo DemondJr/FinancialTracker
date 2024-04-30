@@ -1,8 +1,15 @@
 package com.pluralsight;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -62,27 +69,32 @@ public class FinancialTracker {
         // After reading all the transactions, the file should be closed.
         // If any errors occur, an appropriate error message should be displayed.
 
-    }
-try {
-        BufferedReader buff = new BufferedReader(new FileReader(filename));
-        String line;
-        while ((line = buff.readLine())) != null);
-        String [] parts = line.split("\\|");
-        if (parts.length == 5) {
-            String date = parts[0].trim();
-            String time = parts[1].trim();
-            String type = parts[2].trim();
-            String vendor = parts[3].trim();
-            double price = Double.parseDouble(parts[4]);
-            transactions.add(new Transaction(date, time, type, vendor, price));
+        try {
+            BufferedReader buff = new BufferedReader(new FileReader(FILE_NAME));
+            String line;
+            while ((line = buff.readLine()) != null) ;
+            String[] parts = line.split("\\|");
+            if (parts.length == 5) {
+                LocalDate date = LocalDate.parse(parts[0].trim());
+                LocalTime time = LocalTime.parse(parts[1].trim());
+                String type = parts[2].trim();
+                String vendor = parts[3].trim();
+                double price = Double.parseDouble(parts[4]);
+                transactions.add(new Transaction(date, time, type, vendor, price));
 
+            }
+
+            buff.close();
+
+        } catch (FileNotFoundException e) {
+
+            System.out.println("Error loading inventory: " + e.getMessage());
+
+        } catch (IOException e) {
+            System.out.println("IOException occurred " + e.getMessage());
         }
-
-        buff.close();
-
-    } catch (Exception e) {
-        System.out.println("Error loading inventory: " + e.getMessage());
     }
+
 
     private static void addDeposit(Scanner scanner) {
         // This method should prompt the user to enter the date, time, vendor, and amount of a deposit.
@@ -90,21 +102,47 @@ try {
         // The amount should be a positive number.
         // After validating the input, a new `Deposit` object should be created with the entered values.
         // The new deposit should be added to the `transactions` ArrayList.
-        System.out.println("Enter the date(yyyy-MM-dd): ");
-        String date= scanner.nextLine();
-        System.out.println("Enter the time(HH:mm:ss): ");
-        String time = scanner.nextLine();
-        System.out.println("Enter the deposit amount");
-        Double deposit = scanner.nextDouble();
-            
-            }
+        System.out.println("Enter the date(yyyy-MM-dd HH:mm:ss): ");
+        String dateAndTime = scanner.nextLine();
+        LocalDateTime dateTime = null;// nothing is there yet
 
+        try {
+            dateTime = LocalDateTime.parse(dateAndTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+        } catch (DateTimeParseException e) {
+            System.out.println("Invalid date and time. Please use the following format(yyyy-MM-dd HH:mm:ss)");
+        }
+        System.out.println("Enter the vendor");
+        String vendor = scanner.nextLine();
+
+        System.out.println("Enter the deposit amount");
+        double amount = scanner.nextDouble();
+
+        if (amount <= 0){
+            System.out.println("Invalid input. The amount should be positive");
+            return;
+        }
+    }
     private static void addPayment(Scanner scanner) {
         // This method should prompt the user to enter the date, time, vendor, and amount of a payment.
         // The user should enter the date and time in the following format: yyyy-MM-dd HH:mm:ss
         // The amount should be a positive number.
         // After validating the input, a new `Payment` object should be created with the entered values.
         // The new payment should be added to the `transactions` ArrayList.
+        System.out.println("Enter the date(yyyy-MM-dd HH:mm:ss) ");
+        String dateAndTime = scanner.nextLine();
+        LocalDateTime dateTime = null;
+
+        System.out.println("Enter the vendor");
+        String vendor = scanner.nextLine();
+        
+        System.out.println("Enter the amount of payment");
+        double payment = scanner.nextDouble();
+
+        if (payment <= 0){
+            System.out.println("Invalid input. The payment should be positive");
+            return;
+        }
     }
 
     private static void ledgerMenu(Scanner scanner) {
