@@ -121,10 +121,9 @@ public class FinancialTracker {
 
         System.out.println("Enter the deposit amount");
         double amount = Double.parseDouble(scanner.nextLine()) ;
-
         if (amount <= 0) {
             System.out.println("Invalid input. The amount should be positive");
-            return;
+            raddedtableeturn;
         }
         transactions.add(new Deposit(dateTime, vendor, type, amount));
         buff.
@@ -206,6 +205,9 @@ public class FinancialTracker {
         System.out.println("=============================================================================");
         System.out.printf("%-15s %-10s %-20s %-20s %s\n","Date", "Time","Vendor","Amount");
         System.out.println("=============================================================================");
+        for (Transaction transaction : deposit) {
+            System.out.printf("%-15s %-10s %-20s %-20s $%.2f\n", transaction.getDate(), transaction.getTime(), transaction.getVendor(), transaction.getPrice());
+        }
 
 
     }
@@ -214,6 +216,7 @@ public class FinancialTracker {
         // This method should display a table of all payments in the `transactions` ArrayList.
         // The table should have columns for date, time, vendor, and amount.
         System.out.println("Payments");
+        
     }
 
     private static void reportsMenu(Scanner scanner) {
