@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Transaction {
@@ -16,6 +17,17 @@ public class Transaction {
         this.type = type;
         this.vendor = vendor;
         this.price = price;
+
+
+
+    }
+    public Transaction(LocalDateTime dateTime, String type, String vendor, double price) {
+        this.date = dateTime.toLocalDate();
+        this.time = dateTime.toLocalTime();
+        this.type = type;
+        this.vendor = vendor;
+        this.price = 0.0;
+
 
 
     }
@@ -39,5 +51,6 @@ public class Transaction {
     public double getPrice() {
         return price;
     }
+}
 
 
