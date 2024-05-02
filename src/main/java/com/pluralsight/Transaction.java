@@ -31,6 +31,17 @@ public class Transaction {
 
 
     }
+    public Transaction(LocalDate date,LocalTime time, String type, String vendor) {
+        this.date = date;
+        this.time = time;
+        this.type = type;
+        this.vendor = vendor;
+        this.price = 0.0;
+
+
+
+    }
+
 
     public LocalDate getDate() {
         return date;

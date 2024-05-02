@@ -1,9 +1,7 @@
 package com.pluralsight;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.Buffer;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -109,24 +107,29 @@ public class FinancialTracker {
 
         try {
             dateTime = LocalDateTime.parse(dateAndTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            System.out.println("Enter the vendor");
+            String vendor = scanner.nextLine();
+
+            System.out.println("Enter the description of the deposit");
+            String type = scanner.nextLine();
+
+            System.out.println("Enter the deposit amount");
+            double amount = Double.parseDouble(scanner.nextLine()) ;
+            if (amount <= 0) {
+                System.out.println("Invalid input. The amount should be positive");
+                return;
+            }
+            transactions.add(new Deposit(dateTime, vendor, type, amount));
+            FileWriter fileWriter = new FileWriter(FILE_NAME, true);
+            BufferedWriter buff = new BufferedWriter(fileWriter);
+            buff.flush();
+            buff.close();
 
         } catch (DateTimeParseException e) {
-            System.out.println("Invalid date and time. Please use the following format(yyyy-MM-dd HH:mm:ss)");
+            System.out.println("Invalid date and time. Please use the following format(yyyy-MM-dd HH:mm:ss)" + e.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        System.out.println("Enter the vendor");
-        String vendor = scanner.nextLine();
-
-        System.out.println("Enter the description of the deposit");
-        String type = scanner.nextLine();
-
-        System.out.println("Enter the deposit amount");
-        double amount = Double.parseDouble(scanner.nextLine()) ;
-        if (amount <= 0) {
-            System.out.println("Invalid input. The amount should be positive");
-            raddedtableeturn;
-        }
-        transactions.add(new Deposit(dateTime, vendor, type, amount));
-        buff.
         System.out.println("Your deposit was successful");
     }
 
@@ -136,18 +139,28 @@ public class FinancialTracker {
         // The amount should be a positive number.
         // After validating the input, a new `Payment` object should be created with the entered values.
         // The new payment should be added to the `transactions` ArrayList.
-        System.out.println("Enter the date(yyyy-MM-dd HH:mm:ss) ");
-        String dateAndTime = scanner.nextLine();
-        LocalDateTime dateTime = null;
+        try {
 
-        System.out.println("Enter the vendor");
-        String vendor = scanner.nextLine();
-        System.out.println("Enter the amount of payment");
-        double payment = scanner.nextDouble();
+            System.out.println("Enter the date(yyyy-MM-dd HH:mm:ss) ");
+            String dateAndTime = scanner.nextLine();
+            LocalDateTime dateTime = null;
+            //use .parse to convert dateTime from string to localdatetime.
+            dateTime = LocalDateTime.parse(dateAndTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
-        if (payment <= 0) {
-            System.out.println("Invalid input. The payment should be positive");
-            return;
+            System.out.println("Enter the vendor");
+            String vendor = scanner.nextLine();
+            System.out.println("Enter brief description of payment");
+            String type = scanner.nextLine();
+            System.out.println("Enter the amount of payment");
+            double cost = scanner.nextDouble();
+
+            if (cost <= 0) {
+                System.out.println("Invalid input. The payment should be positive");
+                return;
+            }
+
+        } catch (DateTimeParseException e){
+            System.out.println("Invalid dateTime format. Please use (yyyy-MM-dd HH:mm:ss) format" + e.getMessage());
         }
     }
 
@@ -205,8 +218,10 @@ public class FinancialTracker {
         System.out.println("=============================================================================");
         System.out.printf("%-15s %-10s %-20s %-20s %s\n","Date", "Time","Vendor","Amount");
         System.out.println("=============================================================================");
-        for (Transaction transaction : deposit) {
-            System.out.printf("%-15s %-10s %-20s %-20s $%.2f\n", transaction.getDate(), transaction.getTime(), transaction.getVendor(), transaction.getPrice());
+        for (Transaction transaction : transactions) {
+            if (transaction instanceof Deposit) {
+                System.out.printf("%-15s %-10s %-20s %-20s $%.2f\n", transaction.getDate(), transaction.getTime(), transaction.getVendor(), transaction.getPrice());
+            }
         }
 
 
@@ -216,7 +231,16 @@ public class FinancialTracker {
         // This method should display a table of all payments in the `transactions` ArrayList.
         // The table should have columns for date, time, vendor, and amount.
         System.out.println("Payments");
-        
+        System.out.println("=============================================================================");
+        System.out.printf("%-15s %-10s %-20s %-20s %s\n","Date", "Time","Vendor","Amount");
+        System.out.println("=============================================================================");
+        for (Transaction transaction: transactions) {
+            if (transaction instanceof Payment) {
+                System.out.printf("%-15s %-10s %-20s %-20s $%.2f\n", transaction.getDate(), transaction.getTime(), transaction.getVendor(), transaction.getPrice());
+            }
+
+        }
+
     }
 
     private static void reportsMenu(Scanner scanner) {
