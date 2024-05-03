@@ -4,14 +4,13 @@ import java.io.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FinancialTracker {
 
-    private static ArrayList<Transaction> transactions = new ArrayList<Transaction>();
+    private static final ArrayList<Transaction> transactions = new ArrayList<Transaction>();
     private static final String FILE_NAME = "transactions.csv";
     private static final String DATE_FORMAT = "yyyy-MM-dd";
     private static final String TIME_FORMAT = "HH:mm:ss";
@@ -94,11 +93,7 @@ public class FinancialTracker {
 
 
     private static void addDeposit(Scanner scanner) {
-        // This method should prompt the user to enter the date, time, vendor, and amount of a deposit.
-        // The user should enter the date and time in the following format: yyyy-MM-dd HH:mm:ss
-        // The amount should be a positive number.
-        // After validating the input, a new `Deposit` object should be created with the entered values.
-        // The new deposit should be added to the `transactions` ArrayList.
+
         System.out.println("Enter the date(yyyy-MM-dd HH:mm:ss): ");
         String dateAndTime = scanner.nextLine();
         LocalDateTime dateTime = null;// nothing is there yet
@@ -261,13 +256,14 @@ public class FinancialTracker {
                     // including the date, vendor, and amount for each transaction.
                     System.out.println("Current Months transactions are");
 
-                    LocalDate currentDate = LocalDate.now();
-                    Month currentMonth = currentDate.getMonth();
+                    LocalDate todayDate = LocalDate.now();
+                    Month nowMonth = todayDate.getMonth();
 
-                    System.out.println("Current month:" + currentMonth);
+                    System.out.println("Current month:" + nowMonth);
 
-                    LocalDate startofMonth = currentDate.withDayOfMonth(1);
-                    filterTransactionsByDate(startofMonth, currentDate);
+                    LocalDate nowDate = null;
+                    LocalDate beginningOfMonth = nowDate.withDayOfMonth(1);
+                    filterTransactionsByDate(beginningOfMonth, nowDate);
 
                     break;
 
@@ -277,11 +273,11 @@ public class FinancialTracker {
                     System.out.println("Previous Months transactions are");
 
                     LocalDate previousDate = LocalDate.now().minusMonths(1);
-                    currentMonth = previousDate.getMonth();
+                    Month currentMonth = previousDate.getMonth();
 
                     System.out.println("Previous Month: " + currentMonth);
 
-                    startofMonth = previousDate.withDayOfMonth(1);
+                    LocalDate startofMonth = previousDate.withDayOfMonth(1);
                     LocalDate lastofMonth = previousDate.with(TemporalAdjusters.lastDayOfMonth());
                     filterTransactionsByDate(startofMonth, lastofMonth);
 
@@ -291,7 +287,7 @@ public class FinancialTracker {
                     // Generate a report for all transactions within the current year,
                     // including the date, vendor, and amount for each transaction.
                     System.out.println("Transactions for current year");
-                    currentDate = LocalDate.now();
+                    LocalDate currentDate = LocalDate.now();
                     int currentYear = currentDate.getYear();
 
                     System.out.println("Current Year: " + currentYear);
@@ -373,7 +369,7 @@ public class FinancialTracker {
         }
         if (!found) {
             System.out.println("Transaction does not match Vendor: " + vendor);
-            
+
         }
     }
 }

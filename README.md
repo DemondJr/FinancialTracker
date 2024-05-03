@@ -1,8 +1,7 @@
 # Project Title
-
+FinancialTracker App
 ## Description of the Project
-
-Briefly describe what this Java console application does. Mention its purpose and who the intended users are. Explain the main functionality and what problems it aims to solve.
+The Financial Tracker is a Java project that allows the user to manage their transactions in a easy and effective way.
 
 ![Class Diagram](path/to/your/class_diagram.png)
 
@@ -10,16 +9,15 @@ Briefly describe what this Java console application does. Mention its purpose an
 
 List the user stories that guided the development of your application. Format these stories as: "As a [type of user], I want [some goal] so that [some reason]."
 
-- As a user, I want to be able to input my data, so that the application can process it accordingly.
-- As a user, I want to receive immediate feedback, so I can understand what to do next.
-
+- As a user I want to be able to track down my transactions effectively.
+- As a user I want to see the date and time details of each transaction I've done. 
+- As a user I want to see the vendor to track down where my money has gone.
+- As a user I want to be able to see an updated list of my deposits/ payments immediately after they happen.
 ## Setup
-
-Instructions on how to set up and run the project using IntelliJ IDEA.
-
+Read Below.
 ### Prerequisites
 
-- IntelliJ IDEA: Ensure you have IntelliJ IDEA installed, which you can download from [here](https://www.jetbrains.com/idea/download/).
+- IntelliJ IDEA: Ensure you have IntelliJ IDEA installed. You need this to run the program and code.
 - Java SDK: Make sure Java SDK is installed and configured in IntelliJ.
 
 ### Running the Application in IntelliJ
@@ -27,28 +25,24 @@ Instructions on how to set up and run the project using IntelliJ IDEA.
 Follow these steps to get your application running within IntelliJ IDEA:
 
 1. Open IntelliJ IDEA.
-2. Select "Open" and navigate to the directory where you cloned or downloaded the project.
+2. Select "Open" and navigate to the directory where you cloned or downloaded the project. In this case its "Financial Tracker".
 3. After the project opens, wait for IntelliJ to index the files and set up the project.
 4. Find the main class with the `public static void main(String[] args)` method.
 5. Right-click on the file and select 'Run 'YourMainClassName.main()'' to start the application.
 
 ## Technologies Used
 
-- Java: Mention the version you are using.
+- Java: corretto 17.
 - Any additional libraries or frameworks used in the project.
 
 ## Demo
 
-Include screenshots or GIFs that show your application in action. Use tools like [Giphy Capture](https://giphy.com/apps/giphycapture) to record a GIF of your application.
-
+![](C:\Users\student.BOSPF3ALQEV.000\OneDrive - Year Up- BOS\Pictures\Screenshots\screenshot for capstone.png)
 ![Application Screenshot](path/to/your/screenshot.png)
 
 ## Future Work
 
-Outline potential future enhancements or functionalities you might consider adding:
-
-- Additional feature to be developed.
-- Improvement of current functionalities.
+- Add a feature that allows the user to leave certain criteria blank in case they don't have that information ready.
 
 ## Resources
 
@@ -56,16 +50,13 @@ List resources such as tutorials, articles, or documentation that helped you dur
 
 - [Java Programming Tutorial](https://www.example.com)
 - [Effective Java](https://www.example.com)
+- Google
 
 ## Team Members
-
-- **Name 1** - Specific contributions or roles.
-- **Name 2** - Specific contributions or roles.
+-Demond Jackson Jr.
 
 ## Thanks
 
 Express gratitude towards those who provided help, guidance, or resources:
-// Thank you to Paul Tunda and Anthony Lucas specifically. but App Dev overall is supportive.
-//
-- Thank you to [Mentor's Name] for continuous support and guidance.
-- A special thanks to all teammates for their dedication and teamwork.
+Thank you to Paul Tunda and Anthony Lucas specifically. but App Dev overall is supportive.
+Shout out to Shelby and Aisha as well, who helped me on the switch statements for reportsMenu.
