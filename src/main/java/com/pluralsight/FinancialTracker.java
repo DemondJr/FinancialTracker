@@ -326,7 +326,7 @@ public class FinancialTracker {
                 case "0":
                     running = false;
                     break;
-                    
+
                 default:
                     System.out.println("Invalid option");
                     break;
@@ -335,12 +335,26 @@ public class FinancialTracker {
     }
 
 
-    private static void filterTransactionsByDate(LocalDate startDate, LocalDate currentDate) {
+    private static void filterTransactionsByDate(LocalDate startDate, LocalDate endDate) {
         // This method filters the transactions by date and prints a report to the console.
         // It takes two parameters: startDate and endDate, which represent the range of dates to filter by.
         // The method loops through the transactions list and checks each transaction's date against the date range.
         // Transactions that fall within the date range are printed to the console.
         // If no transactions fall within the date range, the method prints a message indicating that there are no results.
+        System.out.println("Your Transactions between" + " " + " :");
+        boolean found = false;
+        for (Transaction transaction: transactions) {
+            LocalDate transactionDate = transaction.getDate();
+
+            if (!transactionDate.isAfter(startDate) && transactionDate.isBefore(endDate)); {
+                System.out.println(transaction);
+                found = true;
+
+            }
+        }
+        if (!found) {
+            System.out.println("No Transactions between" + startDate + " and " + endDate);
+        }
     }
 
     private static void filterTransactionsByVendor(String vendor) {
