@@ -9,10 +9,10 @@ The Financial Tracker is a Java project that allows the user to manage their tra
 
 List the user stories that guided the development of your application. Format these stories as: "As a [type of user], I want [some goal] so that [some reason]."
 
-- As a user I want to be able to track down my transactions effectively.
-- As a user I want to see the date and time details of each transaction I've done. 
-- As a user I want to see the vendor to track down where my money has gone.
-- As a user I want to be able to see an updated list of my deposits/ payments immediately after they happen.
+- As a user, I want to be able to track down my transactions effectively, so that I can know where my money is going.
+- As a user, I want to see the date and time details of each transaction I've done, so that I can pinpoint exactly when a transaction occurred. 
+- As a user, I want to see the vendor, so that I can track down where my money has gone.
+- As a user, I want to be able to see an updated list of my deposits/ payments immediately after they happen, so that I am informed of everything involving my money.
 ## Setup
 Read Below.
 ### Prerequisites
