@@ -363,5 +363,17 @@ public class FinancialTracker {
         // The method loops through the transactions list and checks each transaction's vendor name against the specified vendor name.
         // Transactions with a matching vendor name are printed to the console.
         // If no transactions match the specified vendor name, the method prints a message indicating that there are no results.
+        System.out.println("Vendor Transactions: " + vendor);
+        boolean found = false;
+        for (Transaction transaction: transactions) {
+            if (transaction.getVendor().equalsIgnoreCase(vendor)) {
+                System.out.println(transaction);
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("Transaction does not match Vendor: " + vendor);
+            
+        }
     }
 }
