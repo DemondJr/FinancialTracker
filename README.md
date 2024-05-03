@@ -50,6 +50,7 @@ List resources such as tutorials, articles, or documentation that helped you dur
 - [Java Programming Tutorial](https://www.example.com)
 - [Effective Java](https://www.example.com)
 - Google
+- https://www.w3schools.com/js/js_date_methods.asp
 
 ## Team Members
 -Demond Jackson Jr.
