@@ -36,9 +36,8 @@ Follow these steps to get your application running within IntelliJ IDEA:
 - Any additional libraries or frameworks used in the project.
 
 ## Demo
-
-![](C:\Users\student.BOSPF3ALQEV.000\OneDrive - Year Up- BOS\Pictures\Screenshots\screenshot for capstone.png)
-![Application Screenshot](path/to/your/screenshot.png)
+![screenshot for capstone](https://github.com/DemondJr/FinancialTracker/assets/166551692/32f2dec1-1f67-4a3f-8819-419c7e556ae4)
+![Screenshot for capstone 2](https://github.com/DemondJr/FinancialTracker/assets/166551692/3c05bfe6-2da2-4eae-a1a4-1be2d3798f5e)
 
 ## Future Work
 
